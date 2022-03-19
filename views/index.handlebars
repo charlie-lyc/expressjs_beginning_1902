@@ -1,0 +1,17 @@
+<h1 class="text-center mb-3">{{ title }}</h1>
+{{> addForm }}
+<hr>
+<h3>Members</h3>
+<ul class="list-group">
+    {{#if members }}
+        {{#each members }}
+        <li class="list-group-item">
+            {{ name }}: {{ email }}
+        </li>
+        {{/each }}
+    {{else }}
+        <p>No members</p>
+    {{/if }}
+</ul>
+
+<a href="/api/members" class="btn btn-secondary mt-4">Visit API</a>
