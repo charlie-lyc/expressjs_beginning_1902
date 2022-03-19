@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid')
 /*******************************************************************/
 // Get All Members
 const getMembers = (req, res) => { 
-    res.json(members)
+    res.status(200).json(members)
 }
 
 /*******************************************************************/
@@ -13,7 +13,7 @@ const getMembers = (req, res) => {
 const getMember = (req, res) => {
     const foundMember = members.find(member => member.id === parseInt(req.params.id))
     if (foundMember) {
-        res.json(foundMember)
+        res.status(200).json(foundMember)
     } else {
         res.status(400).json({ msg: `Not found member with id ${req.params.id}` })
     }
@@ -36,7 +36,7 @@ const createMember = (req, res) => {
             }
             members.push(newMember)
 
-            // res.json(members)
+            // res.status(200).json(members)
             ///////////////////////
             res.redirect('/')
         } else {
@@ -54,7 +54,7 @@ const deleteMember = (req, res) => {
     if (foundMember) {
         const decreasedMembers = members.filter(member => member.id !== foundMember.id)
         
-        // res.json(decreasedMembers)
+        // res.status(200).json(decreasedMembers)
         /////////////////////////////
         res.redirect('/')
     } else {
@@ -79,7 +79,7 @@ const updateMember = (req, res) => {
                     status: foundMember.status
                 }
                 const updatedMembers = members.map(member => member.id === foundMember.id ? updatedMember : member)
-                res.json(updatedMembers)
+                res.status(200).json(updatedMembers)
             } else {
                 // Condition: existedEmailMember.id !== foundMember.id
                 res.status(400).json({ msg: 'Email is already in use.' })
